@@ -26,22 +26,17 @@ public class RedisConnectionService {
 	
 	protected JsonObject getCredentials() {
 	    //for local deployment
-//	    if(System.getenv("VCAP_SERVICES") == null || System.getenv("VCAP_SERVICES").isEmpty()) {
-//	    	return readPropertiesFile();
-//	    }
-//
-//	    //for bluemix deployment
-//	    else {
-//			JsonParser parser = new JsonParser();
-//		    JsonObject allServices = parser.parse(System.getenv("VCAP_SERVICES")).getAsJsonObject();
-//			return ((JsonObject)allServices.getAsJsonArray("rediscloud").get(0)).getAsJsonObject("credentials");
-//	    }
+	    if(System.getenv("VCAP_SERVICES") == null || System.getenv("VCAP_SERVICES").isEmpty()) {
+	    	return readPropertiesFile();
+	    }
+
+	    //for bluemix deployment
+	    else {
+			JsonParser parser = new JsonParser();
+		    JsonObject allServices = parser.parse(System.getenv("VCAP_SERVICES")).getAsJsonObject();
+			return ((JsonObject)allServices.getAsJsonArray("rediscloud").get(0)).getAsJsonObject("credentials");
+	    }
 		
-	JsonObject credentials = new JsonObject();
-	credentials.addProperty("hostname", "pub-redis-15208.dal-05.1.sl.garantiadata.com");
-	credentials.addProperty("port", 15208);
-	credentials.addProperty("password", "5zJ1beLEfI45alEO");
-	return credentials;
 	
 	}
 	

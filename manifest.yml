@@ -1,0 +1,16 @@
+---
+applications:
+- path: target/RedisApiExample.war
+  memory: 512M
+  instances: 1
+  domain: mybluemix.net
+  name: java-redis-api-example
+  host: java-redis-api-example
+  disk_quota: 1024M
+  buildpack: liberty-for-java
+  services:
+  - sample-rediscloud
+declared-services:
+  sample-rediscloud:
+    label: rediscloud
+    plan:  30mb
